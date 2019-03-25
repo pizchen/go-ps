@@ -51,6 +51,10 @@ func (p *WindowsProcess) Pid() int {
 	return p.pid
 }
 
+func (p *WindowsProcess) Uid() int {
+	return -1
+}
+
 // PPid returns parent process id
 func (p *WindowsProcess) PPid() int {
 	return p.ppid

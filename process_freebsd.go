@@ -124,6 +124,10 @@ func (p *UnixProcess) PPid() int {
 	return p.ppid
 }
 
+func (p *UnixProess) Uid() int {
+	return -1
+}
+
 // Executable returns process executable name
 func (p *UnixProcess) Executable() string {
 	return p.binary

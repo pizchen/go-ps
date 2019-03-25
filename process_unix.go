@@ -34,6 +34,10 @@ func (p *UnixProcess) PPid() int {
 	return p.ppid
 }
 
+func (p *UnixProcess) Uid() int {
+	return -1
+}
+
 // Executable returns process executable name
 func (p *UnixProcess) Executable() string {
 	path, err := p.Path()

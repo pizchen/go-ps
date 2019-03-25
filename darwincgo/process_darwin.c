@@ -9,7 +9,7 @@
 #include <sys/sysctl.h>
 
 // This is declared in process_darwin.go
-extern void goDarwinAppendProc(pid_t, pid_t, char *);
+extern void goDarwinAppendProc(pid_t, pid_t, uid_t, char *);
 extern void goDarwinSetPath(pid_t, char *);
 
 // darwinProcesses loads the process table and calls the exported Go function to
@@ -51,6 +51,7 @@ int darwinProcesses() {
         goDarwinAppendProc(
                 single->kp_proc.p_pid,
                 single->kp_eproc.e_ppid,
+		single->kp_eproc.e_ucred.cr_uid,
                 single->kp_proc.p_comm);
     }
 

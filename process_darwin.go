@@ -3,7 +3,7 @@
 package ps
 
 import (
-	"github.com/keybase/go-ps/darwincgo"
+	"github.com/pizchen/go-ps/darwincgo"
 )
 
 func findProcess(pid int) (Process, error) {

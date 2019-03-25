@@ -25,6 +25,7 @@ var darwinProcsByPID map[int]*DarwinProcess
 type DarwinProcess struct {
 	pid  int
 	ppid int
+	uid  int
 	path string
 }
 
@@ -36,6 +37,11 @@ func (p *DarwinProcess) Pid() int {
 // PPid returns parent process id
 func (p *DarwinProcess) PPid() int {
 	return p.ppid
+}
+
+// Uid returns user id
+func (p *DarwinProcess) Uid() int {
+	return p.uid
 }
 
 // Executable returns process executable name
@@ -50,10 +56,11 @@ func (p *DarwinProcess) Path() (string, error) {
 }
 
 //export goDarwinAppendProc
-func goDarwinAppendProc(pid C.pid_t, ppid C.pid_t, comm *C.char) {
+func goDarwinAppendProc(pid C.pid_t, ppid C.pid_t, uid C.uid_t, comm *C.char) {
 	proc := &DarwinProcess{
 		pid:  int(pid),
 		ppid: int(ppid),
+		uid:  int(uid),
 	}
 	darwinProcsByPID[proc.pid] = proc
 }
